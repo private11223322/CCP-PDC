@@ -44,7 +44,13 @@ def _to_b64(image) -> str:
 
 def _vision_find(model_name, api_key, image, query) -> DetectionBox:
     """One Groq vision call: picture + question -> DetectionBox."""
-    llm = ChatGroq(model=model_name, api_key=api_key, temperature=0)
+    llm = ChatGroq(
+        model=model_name,
+        api_key=api_key,
+        temperature=0,
+        max_tokens=400,           # free tier allows ~1000 output tokens/minute
+        reasoning_effort="none",  # skip Qwen's hidden 'thinking' output (saves tokens)
+    )
     structured = llm.with_structured_output(DetectionBox, method="json_mode")
 
     prompt = (
@@ -79,7 +85,13 @@ def run_agent(image, query, model_name, api_key):
         result["image"] = drawer.draw_box(image, det)
         return f"red box drawn for '{label}'"
 
-    llm = ChatGroq(model=model_name, api_key=api_key, temperature=0)
+    llm = ChatGroq(
+        model=model_name,
+        api_key=api_key,
+        temperature=0,
+        max_tokens=400,           # keep every agent step under the free-tier limit
+        reasoning_effort="none",
+    )
     agent = create_agent(llm, tools=[find_object, draw_red_box])
 
     messages = [
