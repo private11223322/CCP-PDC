@@ -32,10 +32,7 @@ with st.sidebar:
     model_name = st.selectbox(
         "Model",
         [
-            "meta-llama/llama-4-scout-17b-16e-instruct",
-            "qwen/qwen3.6-27b",
-            "qwen/qwen3.8-27b",
-            "meta-llama/llama-4-maverick-17b-128e-instruct",
+            "qwen/qwen3.6-27b"
         ],
         index=0,
     )
