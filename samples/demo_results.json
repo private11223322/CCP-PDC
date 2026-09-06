@@ -1,0 +1,64 @@
+{
+  "task": "locate the requested object in the image and return a bounding box (any object)",
+  "detector": "yoloe-11s-seg (open-vocabulary, classes set at runtime via MobileCLIP text encoder)",
+  "runs": [
+    {
+      "input_image": "samples/fire_hydrant.jpg",
+      "image_size_px": [
+        500,
+        750
+      ],
+      "query": "fire hydrant",
+      "best_detection": {
+        "label": "fire hydrant",
+        "box_px": [
+          216,
+          279,
+          324,
+          635
+        ],
+        "confidence": 0.907
+      },
+      "output_image": "samples/fire_hydrant_detected.jpg"
+    },
+    {
+      "input_image": "samples/dog.jpg",
+      "image_size_px": [
+        1470,
+        980
+      ],
+      "query": "dog",
+      "best_detection": {
+        "label": "dog",
+        "box_px": [
+          712,
+          39,
+          1465,
+          960
+        ],
+        "confidence": 0.871
+      },
+      "output_image": "samples/dog_detected.jpg"
+    },
+    {
+      "input_image": "samples/umbrella.jpg",
+      "image_size_px": [
+        500,
+        333
+      ],
+      "query": "umbrella",
+      "best_detection": {
+        "label": "umbrella",
+        "box_px": [
+          128,
+          72,
+          476,
+          199
+        ],
+        "confidence": 0.919
+      },
+      "output_image": "samples/umbrella_detected.jpg"
+    }
+  ],
+  "total_time_seconds": 8.7
+}
